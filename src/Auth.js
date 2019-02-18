@@ -34,7 +34,7 @@ export default class Auth {
         this.setSession(authResult)
       } else if (err) {
         console.log(err)
-        alert(`Error: ${err.error}. Check the console for further details.`)
+        window.alert(`Error: ${err.error}. Check the console for further details.`)
       }
     })
   }
@@ -46,7 +46,7 @@ export default class Auth {
     this.expiresAt = 0
 
     // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn')
+    window.localStorage.removeItem('isLoggedIn')
   }
 
   isAuthenticated () {
@@ -63,14 +63,14 @@ export default class Auth {
       } else if (err) {
         this.logout()
         console.log(err)
-        alert(`Could not get a new token (${err.error}: ${err.error_description}).`)
+        window.alert(`Could not get a new token (${err.error}: ${err.error_description}).`)
       }
     })
   }
 
   setSession (authResult) {
     // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true')
+    window.localStorage.setItem('isLoggedIn', 'true')
 
     // Set the time that the access token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime()
